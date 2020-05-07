@@ -60,11 +60,11 @@ public class AuthorizationServer extends AuthorizationServerConfigurerAdapter {
                 .withClient("clientId")
                 .secret(new BCryptPasswordEncoder().encode("123"))
                 .resourceIds("res1")
-//                .authorizedGrantTypes("authorization_code", "refresh_token")  //授权码模式
-                .authorizedGrantTypes("refresh_token","implicit") //简化模式
+                .authorizedGrantTypes("authorization_code", "refresh_token")  //授权码模式
+//                .authorizedGrantTypes("refresh_token","implicit") //简化模式
                 .scopes("all")
-//                .redirectUris("http://localhost:8082/index.html"); //授权码模式
-                .redirectUris("http://localhost:8082/index2.html");
+                .redirectUris("http://localhost:8082/index.html"); //授权码模式
+//                .redirectUris("http://localhost:8082/index2.html");  //简化模式
     }
 
     @Bean
