@@ -1,5 +1,6 @@
-package com.review.otherclient.controller;
+package com.review.otherclientjwt.controller;
 
+import com.review.otherclient.controller.TokenTask;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -20,7 +21,6 @@ import java.util.Map;
  * @Version 1.0
  */
 @Controller
-
 public class HelloController {
     @Autowired
     private RestTemplate restTemplate;
