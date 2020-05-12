@@ -17,6 +17,7 @@ import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.provisioning.JdbcUserDetailsManager;
+import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
 
 import javax.sql.DataSource;
 import java.io.PrintWriter;
@@ -31,6 +32,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private DataSource dataSource;
+
+    @Bean
+    JdbcTokenRepositoryImpl jdbcTokenRepository() {
+        JdbcTokenRepositoryImpl jdbcTokenRepository = new JdbcTokenRepositoryImpl();
+        jdbcTokenRepository.setDataSource(dataSource);
+        return jdbcTokenRepository;
+    }
 
 
     @Bean
@@ -84,6 +92,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     out.close();
                 })
                 .permitAll()
+                .and()
+                .rememberMe()
+                .key("wangp")
+                .tokenRepository(jdbcTokenRepository())
                 .and()
                 .logout()
                 .logoutUrl("/logout")
