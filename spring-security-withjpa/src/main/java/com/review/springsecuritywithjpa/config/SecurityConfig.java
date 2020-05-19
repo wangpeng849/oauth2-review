@@ -84,6 +84,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 })
                 .permitAll()
                 .and()
+                .rememberMe()
+                .and()
                 .logout()
                 .logoutUrl("/logout")
                 /** 注销跳转
